@@ -17,3 +17,4 @@ node_modules/
 .editorconfig
 
 src/db/connection/resume.sqlite
+coverage

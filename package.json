@@ -4,7 +4,8 @@
   "scripts": {
     "build": "tsc",
     "start": "node ./bin/app.js",
-    "dev": "nodemon --exec 'ts-node ./src/app.ts'"
+    "dev": "nodemon --exec 'ts-node ./src/app.ts'",
+    "test": "jest --coverage"
   },
   "dependencies": {
     "@types/node": "^18.15.5",

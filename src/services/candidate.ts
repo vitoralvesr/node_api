@@ -1,4 +1,4 @@
-import * as candidateDal from '../db/dal/candidate';
+import * as candidateDal from '../db/dao/candidate';
 import { CandidateInput, CandidateOutput } from '../db/models/candidate';
 
 

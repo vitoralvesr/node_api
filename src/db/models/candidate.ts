@@ -59,6 +59,9 @@ const Candidate = sequelize.define<CandidateInstance>(
       type: DataTypes.TEXT,
       allowNull: false
     },
+  },
+  {
+    freezeTableName: true,
   }
 );
 
