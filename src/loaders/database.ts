@@ -1,5 +1,5 @@
 import config from '../config';
-import Candidate from './models/candidate';
+import Candidate from '../db/models/candidate';
 
 const isDev = config.nodeEnv === 'development'
 const isTest = config.nodeEnv !== 'test'

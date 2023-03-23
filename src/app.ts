@@ -1,36 +1,17 @@
-import express, { Application, Request, Response } from 'express';
-import routes from './api/routes';
-import initDatabase from './db/init';
+import express, { Application } from 'express';
+import config from './config';
+import initLoaders from './loaders';
 
-initDatabase();
+const port = config.port;
 
-const port = 3000
+const app: Application = express();
 
-export const get = () => {
-  const app: Application = express()
+initLoaders(app);
 
-  // Body parsing Middleware
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-
-  app.get('/', async (req: Request, res: Response): Promise<Response> => {
-    return res.status(200).send({ message: `Welcome to the cookbook API! \n Endpoints available at http://localhost:${port}/api/v1` })
+try {
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`)
   })
-
-  app.use('/api/v1', routes)
-
-  return app
+} catch (error: any) {
+  console.log(`Error occurred: ${error.message}`)
 }
-
-export const start = () => {
-  const app = get()
-  try {
-    app.listen(port, () => {
-      console.log(`Server running on http://localhost:${port}`)
-    })
-  } catch (error: any) {
-    console.log(`Error occurred: ${error.message}`)
-  }
-}
-
-start()

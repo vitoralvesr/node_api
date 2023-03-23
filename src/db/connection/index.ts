@@ -1,9 +1,12 @@
+import path from 'path';
 import { Sequelize } from 'sequelize';
-import config from '../../config';
 
-const databaseUrl = config.databaseUrl || 'sqlite::memory:';
-
-const sequelize = new Sequelize(databaseUrl);
+const sequelize = new Sequelize({
+  storage: path.join(__dirname, 'resume.sqlite'),
+  host: 'localhost',
+  dialect: 'sqlite',
+  logging: console.log
+});
 
 export { Sequelize, sequelize };
 

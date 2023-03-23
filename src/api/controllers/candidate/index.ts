@@ -20,15 +20,8 @@ export const deleteById = (
   id: number
 ): Promise<boolean> => (service.deleteById(id));
 
-export const getAll = async (): Promise<ICandidate[]> => {
-  const candidates: ICandidate[] | undefined =
-    await service.getAll().then(
-      (candidates) => candidates.map(mapper.toCandidate)
-    );
-
-  if (!candidates?.length) {
-    throw new Error("Not Found");
-  }
-
-  return candidates;
-}
+export const getAll = async (): Promise<ICandidate[]> => (
+  await service.getAll().then(
+    (candidates) => candidates.map(mapper.toCandidate)
+  )
+);
