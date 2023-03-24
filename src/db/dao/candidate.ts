@@ -1,3 +1,4 @@
+import CandidateNotFoundError from '../../errors/candidateNotFound';
 import Candidate, { CandidateInput, CandidateOutput } from '../models/candidate';
 
 export const create = (payload: CandidateInput): Promise<CandidateOutput> => {
@@ -8,7 +9,7 @@ export const update = async (id: number, payload: Partial<CandidateInput>): Prom
   const candidate = await Candidate.findByPk(id);
 
   if (!candidate) {
-    throw new Error('not found');
+    throw new CandidateNotFoundError();
   }
 
   return candidate.update(payload);
@@ -18,7 +19,7 @@ export const getById = async (id: number): Promise<CandidateOutput> => {
   const candidate = await Candidate.findByPk(id);
 
   if (!candidate) {
-    throw new Error('not found');
+    throw new CandidateNotFoundError();
   }
 
   return candidate;
@@ -32,6 +33,4 @@ export const deleteById = async (id: number): Promise<boolean> => {
   return !!numDeletedCandidates;
 }
 
-export const getAll = async (): Promise<CandidateOutput[]> => {
-  return Candidate.findAll();
-}
+export const getAll = async (): Promise<CandidateOutput[]> => (Candidate.findAll());
